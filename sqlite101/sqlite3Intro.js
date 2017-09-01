@@ -1,7 +1,7 @@
 "use strict";
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('company.sqlite', (err) =? console.log('Connected'));
+const db = new sqlite3.Database('company.sqlite', (err) => console.log('Connected'));
 
 db.run('DROP TABLE IF EXISTS employees');
 
@@ -14,7 +14,7 @@ createEmployeesTable();
 // db.run('INSERT INTO employees VALUES (1, "Fred', "Jones", 23000, "Janitorial")');
 // db.run('INSERT INTO employees VALUES (1, "Linda', "Mack", 83000, "CTO")');
 
-cons populateEmployees = () => {
+const populateEmployees = () => {
     const { list } = require('./employees.json');
     list.forEach( (employee) => {
         db.run(`INSERT INTO employees VALUES(
@@ -34,7 +34,7 @@ db.get('SELECT FROM employees', (err, {id, first, last, department, salary}) => 
     console.log(`${id} ${first} ${last} ${department} ${salary}`);    
 });
 
-db.all('SELECT * FROM employees' (err, allRows) => {
+db.all('SELECT * FROM employees', (err, allRows) => {
     console.log('all rows', allRows);
     if (err) {
         return console.log('err', err.toString());
