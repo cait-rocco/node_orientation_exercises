@@ -1,0 +1,18 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^3.1.8"
+  },
+  "scripts": {
+    "test": "mocha --watch --recursive -R spec --colors"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}
