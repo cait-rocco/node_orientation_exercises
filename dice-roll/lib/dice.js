@@ -1,6 +1,6 @@
 'use strict'
 
-const { randomInt } = require('./math')(lower, upper);
+const { randomInt } = require('./math');
 
 module.exports = function({count, sides}) {
     return {
@@ -13,9 +13,7 @@ module.exports = function({count, sides}) {
             var lower = split[0];
             console.log("lower limit", lower);
             console.log("upper limit", upper);
-            // const { randomInt } = require('./math')(lower, upper);
             return randomInt(lower, upper);
-            // return total;
         }
     };
 }

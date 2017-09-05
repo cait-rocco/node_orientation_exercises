@@ -12,7 +12,7 @@
 4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:356:5
 4 verbose stack     at handleExists (C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:329:20)
 4 verbose stack     at FSReqWrap.cb [as oncomplete] (fs.js:258:19)
-5 verbose cwd C:\Users\Cait\workspace\node\orientation\dice-roll
+5 verbose cwd C:\Users\Cait\workspace\node\orientation\dice-roll\bin
 6 error Windows_NT 10.0.14393
 7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start" "2" "3"
 8 error node v6.11.2
