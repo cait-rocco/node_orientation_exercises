@@ -6,9 +6,9 @@ const { argv: [,, ...args] } = process
 
 db.run('CREATE TABLE IF NOT EXISTS loot (firstName TEXT, toy TEXT, status TEXT)');
 
-const ifExists = (args) => {
-    db.all(`SELECT "${args[1]}" FROM loot WHERE toy = "${arg[2]}`)
-}
+// const ifExists = (args) => {
+//     db.all(`SELECT "${args[1]}" FROM loot WHERE toy = "${arg[2]}`)
+// }
 
 const addLoot = (args) => {
     db.run(`INSERT INTO loot VALUES(
@@ -32,17 +32,41 @@ const removeLoot = (args) => {
     )
 }
 
-const showResults = (args) => {
+const whichResults = (args) => {
     if(args.length < 2) {
-        db.each('SELECT firstName FROM loot WHERE status = "null"', (err, results) => {
-            console.log(results.firstName);
-        })
-    } else  {
-        db.each(`SELECT toy FROM loot WHERE firstName = "${args[1]}"`, (err, results) => {
-            console.log(results.toy)
-        })
+        listNames();
+    } else {
+        listToys(args);
     }
-}
+};
+
+const listNames = () => {
+    db.all('SELECT firstName FROM loot WHERE status = "null"', (err, results) => {
+        let nameArr = [];
+        results.forEach((result) => {
+            nameArr.push(result.firstName);
+        });
+        console.log("nameArr", nameArr);
+        return nameArr; 
+    });
+};
+
+const listToys = (args) => {
+    db.all(`SELECT toy FROM loot WHERE firstName = "${args[1]}"`, (err, results) => {
+        let toyArr = [];
+        results.forEach((result) => {
+            toyArr.push(result.toy);
+        })
+        console.log(toyArr);
+        return toyArr;
+    });
+};
+
+// const listToys = (name) => {
+//     return new Promise((resolve, reject) => {
+//         resolve
+//     })
+// }
 
 const status = (args) => {
     db.run(`UPDATE loot SET status = "${args[0]}" WHERE firstName = "${args[1]}"`)
@@ -54,7 +78,7 @@ const argCheck = (args) => {
     } else if(args[0] === "remove") {
         removeLoot(args);
     } else if(args[0] === "ls") {
-        showResults(args)
+        whichResults(args)
     } else if(args[0] === "delivered") {
         status(args)
     }
@@ -62,4 +86,4 @@ const argCheck = (args) => {
 
 argCheck(args);
 
-module.exports = {addLoot, argCheck, removeLoot, showResults, status, ifExists};
+module.exports = {addLoot, argCheck, removeLoot, listNames, listToys, status};
